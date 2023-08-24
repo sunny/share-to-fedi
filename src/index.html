@@ -25,7 +25,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>toot &mdash; cross-instance share page for Mastodon</title>
+		<title data-translate-inner="title">
+			toot &mdash; cross-instance share page for Mastodon
+		</title>
 		<meta
 			name="description"
 			content="toot allows you to share stuff on Mastodon, cross-instance. Just put in your post text and the instance URL and click &lsquo;Toot!&rsquo;"
@@ -53,19 +55,19 @@
 		<main>
 			<form action="/api/toot" method="POST" onsubmit="onFormSubmit(this)">
 				<section>
-					<label for="text" data-translate-inner="post_text">Post text</label>
+					<label for="text" data-translate-inner="postText">Post text</label>
 					<textarea
 						name="text"
 						id="text"
 						rows="6"
 						placeholder="What's on your mind?"
 						required
-						data-translate-placeholder="post_text_placeholder"
+						data-translate-placeholder="postTextPlaceholder"
 					></textarea>
 				</section>
 				<section>
 					<datalist id="instanceDatalist"></datalist>
-					<label for="instance" data-translate-inner="choose_instance">
+					<label for="instance" data-translate-inner="chooseInstance">
 						Choose your Mastodon instance
 					</label>
 					<input
@@ -79,7 +81,7 @@
 				</section>
 				<section class="remember">
 					<input type="checkbox" id="remember" name="remember" />
-					<label for="remember" data-translate-inner="remember_instance">
+					<label for="remember" data-translate-inner="rememberInstance">
 						Remember my instance on this device
 					</label>
 				</section>
@@ -92,7 +94,7 @@
 			<section>
 				<a
 					href="https://joinmastodon.org/"
-					data-translate-inner="what_is_mastodon"
+					data-translate-inner="whatIsMastodon"
 				>
 					What is Mastodon?
 				</a>
@@ -100,7 +102,7 @@
 			<section>
 				<a
 					href="https://github.com/kytta/share2fedi/"
-					data-translate-inner="share2fedi_on_github"
+					data-translate-inner="share2fediOnGithub"
 				>
 					share2fedi on GitHub
 				</a>

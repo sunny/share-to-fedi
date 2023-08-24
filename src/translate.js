@@ -1,73 +1,69 @@
 
 const translations = {
   fr: {
+    title: "toot — page de partage inter-instance pour Mastodon",
     for: "pour",
-    post_text: "Texte du toot",
-    post_text_placeholder: "Qu’avez-vous en tête ?",
-    choose_instance: "Choisissez votre instance Mastodon",
-    remember_instance: "Se souvenir de mon instance sur ce navigateur",
+    postText: "Texte du toot",
+    postTextPlaceholder: "Qu’avez-vous en tête ?",
+    chooseInstance: "Choisissez votre instance Mastodon",
+    rememberInstance: "Se souvenir de mon instance sur ce navigateur",
     toot: "TOOTER !",
-    what_is_mastodon: "Qu’est-ce que Mastodon ?",
-    share2fedi_on_github: "share2fedi sur GitHub",
+    whatIsMastodon: "Qu’est-ce que Mastodon ?",
+    share2fediOnGithub: "share2fedi sur GitHub",
   },
   es: {
+    title: "toot — página de compartir interinstancia para Mastodon",
     for: "para",
-    post_text: "Texto del toot",
-    post_text_placeholder: "¿Qué está pasando?",
-    choose_instance: "Elige tu instancia de Mastodon",
-    remember_instance: "Recordar mi instancia en este navegador",
+    postText: "Texto del toot",
+    postTextPlaceholder: "¿Qué está pasando?",
+    chooseInstance: "Elige tu instancia de Mastodon",
+    rememberInstance: "Recordar mi instancia en este navegador",
     toot: "¡TOOT!",
-    what_is_mastodon: "¿Qué es Mastodon?",
-    share2fedi_on_github: "share2fedi en GitHub",
+    whatIsMastodon: "¿Qué es Mastodon?",
+    share2fediOnGithub: "share2fedi en GitHub",
   },
   de: {
+    title: "toot — Inter-Instanz-Sharing-Seite für Mastodon",
     for: "für",
-    post_text: "Toot-Text",
-    post_text_placeholder: "Was denkst du gerade?",
-    choose_instance: "Wähle deine Mastodon-Instanz",
-    remember_instance: "Diese Instanz merken",
+    postText: "Toot-Text",
+    postTextPlaceholder: "Was denkst du gerade?",
+    chooseInstance: "Wähle deine Mastodon-Instanz",
+    rememberInstance: "Diese Instanz merken",
     toot: "TOOTER!",
-    what_is_mastodon: "Was ist Mastodon?",
-    share2fedi_on_github: "share2fedi auf GitHub",
+    whatIsMastodon: "Was ist Mastodon?",
+    share2fediOnGithub: "share2fedi auf GitHub",
   },
   ru: {
+    title: "toot — страница для обмена между инстанциями Mastodon",
     for: "для",
-    post_text: "Toot Текст",
-    post_text_placeholder: "О чем вы думаете?",
-    choose_instance: "Выберите вашу инстанцию Mastodon",
-    remember_instance: "Запомнить эту инстанцию в этом браузере",
+    postText: "Toot Текст",
+    postTextPlaceholder: "О чем вы думаете?",
+    chooseInstance: "Выберите вашу инстанцию Mastodon",
+    rememberInstance: "Запомнить эту инстанцию в этом браузере",
     toot: "TOOTER!",
-    what_is_mastodon: "Что такое Mastodon?",
-    share2fedi_on_github: "share2fedi на GitHub",
+    whatIsMastodon: "Что такое Mastodon?",
+    share2fediOnGithub: "share2fedi на GitHub",
   },
 }
 
-let lang = "en";
+function translate(lang) {
+  const replacements = translations[lang];
+  if (!replacements) return
 
-for (const urlParameter of window.location.search.slice(1).split("&")) {
-  const parameterPair = urlParameter.split("=");
-  if (parameterPair[0] === "lang") {
-    lang = parameterPair[1];
-  }
-}
-
-const replacements = translations[lang];
-
-if (replacements) {
   document.documentElement.lang = lang;
 
-  for (const element of document.querySelectorAll("[data-translate-inner]")) {
-    const replacement = replacements[element.dataset.translateInner];
-    if (replacement) element.innerHTML = replacement;
-  }
+  const dataAttributes = [
+    ["data-translate-inner", "innerHTML"],
+    ["data-translate-value", "value"],
+    ["data-translate-placeholder", "placeholder"],
+  ];
 
-  for (const element of document.querySelectorAll("[data-translate-placeholder]")) {
-    const replacement = replacements[element.dataset.translatePlaceholder];
-    if (replacement) element.placeholder = replacement;
-  }
-
-  for (const element of document.querySelectorAll("[data-translate-value]")) {
-    const replacement = replacements[element.dataset.translateValue];
-    if (replacement) element.value = replacement;
+  for (const [data, attribute] of dataAttributes) {
+    for (const node of document.querySelectorAll(`[${data}]`)) {
+      const value = replacements[node.attributes[data].value];
+      if (value) node[attribute] = value;
+    }
   }
 }
+
+translate(new URLSearchParams(window.location.search).get("lang"));
