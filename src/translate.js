@@ -9,6 +9,7 @@ const translations = {
     rememberInstance: "Se souvenir de mon instance sur ce navigateur",
     toot: "TOOTER !",
     whatIsMastodon: "Qu’est-ce que Mastodon ?",
+    mastodonUrl: "https://joinmastodon.org/fr",
     share2fediOnGithub: "share2fedi sur GitHub",
   },
   es: {
@@ -20,6 +21,7 @@ const translations = {
     rememberInstance: "Recordar mi instancia en este navegador",
     toot: "¡TOOT!",
     whatIsMastodon: "¿Qué es Mastodon?",
+    mastodonUrl: "https://joinmastodon.org/es",
     share2fediOnGithub: "share2fedi en GitHub",
   },
   de: {
@@ -31,6 +33,7 @@ const translations = {
     rememberInstance: "Diese Instanz merken",
     toot: "TOOTER!",
     whatIsMastodon: "Was ist Mastodon?",
+    mastodonUrl: "https://joinmastodon.org/de",
     share2fediOnGithub: "share2fedi auf GitHub",
   },
   ru: {
@@ -42,6 +45,7 @@ const translations = {
     rememberInstance: "Запомнить эту инстанцию в этом браузере",
     toot: "TOOTER!",
     whatIsMastodon: "Что такое Mastodon?",
+    mastodonUrl: "https://joinmastodon.org/ru",
     share2fediOnGithub: "share2fedi на GitHub",
   },
 }
@@ -56,6 +60,7 @@ function translate(lang) {
     ["data-translate-inner", "innerHTML"],
     ["data-translate-value", "value"],
     ["data-translate-placeholder", "placeholder"],
+    ["data-translate-href", "href"],
   ];
 
   for (const [data, attribute] of dataAttributes) {
